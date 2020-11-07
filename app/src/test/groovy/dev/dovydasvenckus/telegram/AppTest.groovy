@@ -1,16 +1,33 @@
 package dev.dovydasvenckus.telegram
 
+import dev.dovydasvenckus.telegram.notification.Notification
+import io.dropwizard.testing.ResourceHelpers
+import io.dropwizard.testing.junit.DropwizardAppRule
+import org.junit.Rule
 import spock.lang.Specification
 
+import javax.ws.rs.client.Client
+import javax.ws.rs.client.Entity
+import javax.ws.rs.core.Response
+
 class AppTest extends Specification {
+    @Rule
+    DropwizardAppRule<TelegramConfiguration> RULE = new DropwizardAppRule<>(
+            App.class,
+            ResourceHelpers.resourceFilePath("test-config.yml")
+    )
+
     def "application has a greeting"() {
-        setup:
-        def app = new App()
+        given:
+            Client client = RULE.client()
 
         when:
-        def result = app.greeting
+            Response response = client.target(
+                    String.format("http://localhost:%d/notification", RULE.getLocalPort()))
+                    .request()
+                    .post(Entity.json(new Notification(message: "Test message")))
 
         then:
-        result != null
+            response.getStatus() == 204
     }
 }
