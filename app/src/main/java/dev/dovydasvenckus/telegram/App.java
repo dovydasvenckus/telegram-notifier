@@ -4,6 +4,8 @@ import dev.dovydasvenckus.telegram.notification.NotificationResource;
 import dev.dovydasvenckus.telegram.telegram.TelegramConfiguration;
 import dev.dovydasvenckus.telegram.telegram.TelegramSender;
 import io.dropwizard.Application;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -20,6 +22,11 @@ public class App extends Application<AppConfiguration> {
 
   @Override
   public void initialize(Bootstrap<AppConfiguration> bootstrap) {
+    bootstrap.setConfigurationSourceProvider(
+        new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+            new EnvironmentVariableSubstitutor(false)
+        )
+    );
   }
 
   @Override

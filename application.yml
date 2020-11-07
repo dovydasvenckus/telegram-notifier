@@ -1,0 +1,5 @@
+telegram:
+  api:
+    token: ${TELEGRAM_API_TOKEN}
+    url: https://api.telegram.org/bot%s/%s
+  chatId: ${TELEGRAM_CHAT_ID}
