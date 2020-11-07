@@ -1,2 +1,13 @@
-apiToken: some
-chatId: another
+server:
+  applicationConnectors:
+   - type: http
+     port: 0
+  adminConnectors:
+   - type: http
+     port: 0
+
+telegram:
+  api:
+    url: http://localhost/bot%s/%s
+    token: someToken
+  chatId: chatId

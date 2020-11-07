@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response
 
 class AppTest extends Specification {
     @Rule
-    DropwizardAppRule<TelegramConfiguration> RULE = new DropwizardAppRule<>(
+    DropwizardAppRule<AppConfiguration> RULE = new DropwizardAppRule<>(
             App.class,
             ResourceHelpers.resourceFilePath("test-config.yml")
     )
