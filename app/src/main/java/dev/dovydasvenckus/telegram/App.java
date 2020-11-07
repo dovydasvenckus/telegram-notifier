@@ -1,11 +1,10 @@
 package dev.dovydasvenckus.telegram;
 
+import dev.dovydasvenckus.telegram.notification.NotificationResource;
+import dev.dovydasvenckus.telegram.telegram.TelegramSender;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-
-import dev.dovydasvenckus.telegram.notification.NotificationResource;
-import dev.dovydasvenckus.telegram.telegram.TelegramSender;
 
 public class App extends Application<TelegramConfiguration> {
 
@@ -24,12 +23,12 @@ public class App extends Application<TelegramConfiguration> {
 
   @Override
   public void run(TelegramConfiguration configuration,
-                  Environment environment) {
+      Environment environment) {
     TelegramSender telegramSender = new TelegramSender(
         configuration.getApiUrl(),
         configuration.getApiToken(),
         configuration.getChatId()
-    );						
+    );
     environment.jersey().register(new NotificationResource(telegramSender));
   }
 

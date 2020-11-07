@@ -1,8 +1,8 @@
 package dev.dovydasvenckus.telegram;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import javax.validation.constraints.NotEmpty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TelegramConfiguration extends Configuration {
 
