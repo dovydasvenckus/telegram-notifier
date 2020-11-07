@@ -8,6 +8,6 @@ server:
 
 telegram:
   api:
-    url: http://localhost/bot%s/%s
-    token: someToken
+    url: http://localhost:8090/bot%s/%s
+    token: SomeToken
   chatId: chatId

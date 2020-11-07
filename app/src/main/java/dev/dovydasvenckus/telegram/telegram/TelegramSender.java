@@ -1,14 +1,17 @@
 package dev.dovydasvenckus.telegram.telegram;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import org.eclipse.jetty.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TelegramSender {
 
+  private static final Logger LOG = LoggerFactory.getLogger(TelegramSender.class);
   private static final String SEND_ACTION_URL = "sendMessage";
 
   private String apiUrl;
@@ -23,7 +26,8 @@ public class TelegramSender {
     this.chatId = chatId;
   }
 
-  public void sendMessage(String message) throws IOException, InterruptedException {
+  public void sendMessage(String message) throws Exception {
+    LOG.info(String.format("Sending message to %s", chatId));
     String requestBody = objectMapper.writeValueAsString(new Message(chatId, message));
 
     HttpClient client = HttpClient.newHttpClient();
@@ -34,5 +38,10 @@ public class TelegramSender {
         .build();
 
     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    if (response.statusCode() != HttpStatus.OK_200) {
+      LOG.error("Could not send message to chat: {}. Reason: {}", chatId, response.body());
+      throw new TelegramException(response.body());
+    }
   }
 }

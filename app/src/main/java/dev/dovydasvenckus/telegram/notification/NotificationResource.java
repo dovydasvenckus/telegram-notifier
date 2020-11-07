@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/api/notifications")
 public class NotificationResource {
@@ -17,11 +18,12 @@ public class NotificationResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  public void notify(Notification notification) {
+  public Response notify(Notification notification) {
     try {
       telegramSender.sendMessage(notification.getMessage());
+      return Response.ok().build();
     } catch (Exception ex) {
-      //TODO log exception
+      return Response.serverError().build();
     }
   }
 }
