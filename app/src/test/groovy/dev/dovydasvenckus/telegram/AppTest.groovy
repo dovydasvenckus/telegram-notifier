@@ -23,7 +23,7 @@ class AppTest extends Specification {
 
         when:
             Response response = client.target(
-                    String.format("http://localhost:%d/notification", RULE.getLocalPort()))
+                    String.format("http://localhost:%d/api/notifications", RULE.getLocalPort()))
                     .request()
                     .post(Entity.json(new Notification(message: "Test message")))
 

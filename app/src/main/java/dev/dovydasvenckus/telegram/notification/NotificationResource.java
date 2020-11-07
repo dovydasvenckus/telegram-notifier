@@ -6,7 +6,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
-@Path("/notification")
+@Path("/api/notifications")
 public class NotificationResource {
 
   private TelegramSender telegramSender;
