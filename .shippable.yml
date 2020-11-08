@@ -10,3 +10,7 @@ build:
 
   ci:
     - ./gradlew build
+  post_ci:
+    - ./ci/copy-test-results.sh
+  on_failure:
+    - ./ci/copy-test-results.sh
