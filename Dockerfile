@@ -13,5 +13,5 @@ COPY --from=build-jar /home/build-space/app/build/libs/${APP_NAME} .
 COPY "application.yml" .
 USER nobody
 ENTRYPOINT ["/bin/sh", "-c", \
- "java -jar $APP_NAME server application.yml"]
+ "java -Xms32m -Xmx64m -jar $APP_NAME server application.yml"]
 EXPOSE 8080
