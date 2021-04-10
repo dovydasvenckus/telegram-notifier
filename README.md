@@ -1,4 +1,4 @@
 # Telegram notifier
 
-[![Run Status](https://api.shippable.com/projects/5f9452cf7aebff0006d9b1c7/badge?branch=main)]()
-[![Coverage Badge](https://api.shippable.com/projects/5f9452cf7aebff0006d9b1c7/coverageBadge?branch=main)]()  
+[![Build Status](https://travis-ci.com/dovydasvenckus/telegram-notifier.svg?branch=main)](https://travis-ci.com/dovydasvenckus/telegram-notifier)
+[![Known Vulnerabilities](https://snyk.io//test/github/dovydasvenckus/telegram-notifier/badge.svg?targetFile=app/build.gradle)](https://snyk.io//test/github/dovydasvenckus/telegram-notifier?targetFile=app/build.gradle)
