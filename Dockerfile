@@ -1,10 +1,10 @@
-FROM openjdk:11-slim-buster AS build-jar
+FROM openjdk:11-slim-bullseye AS build-jar
 ENV BUILD_ROOT=/home/build-space
 WORKDIR $BUILD_ROOT
 COPY [".", "${BUILD_ROOT}"]
 RUN ./gradlew assemble
 
-FROM openjdk:11-slim-buster
+FROM openjdk:11-slim-bullseye
 MAINTAINER Dovydas Venckus "dovydas.venckus@live.com"
 ENV APP_ROOT=/home/telegram-notifier \
     APP_NAME=app-all.jar
